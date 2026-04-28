@@ -1,0 +1,12 @@
+name: "analyze_python"
+description: "分析 Python 项目代码统计"
+steps:
+  - tool: "shell"
+    args:
+      command: "find . -name '*.py' | wc -l"
+  - tool: "shell"
+    args:
+      command: "find . -name '*.py' -exec wc -l {} + | tail -1"
+  - tool: "shell"
+    args:
+      command: "find . -name '*.py' -exec grep -l 'class ' {} + | wc -l"

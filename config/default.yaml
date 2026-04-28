@@ -1,0 +1,35 @@
+model:
+  name: "/Users/lpc/IdeaProjects/AI/llmrt/qwen3-8B"
+  device: "auto"          # auto / mps / cpu
+  quantization: null      # null / 4bit / 8bit
+  max_new_tokens: 2048
+  temperature: 0.7
+  top_p: 0.9
+
+agent:
+  max_iterations: 15
+  iteration_timeout: 120
+  allowed_directories: ["."]
+
+memory:
+  short_term_window: 20
+  long_term:
+    embedding_model: "/Users/lpc/IdeaProjects/AI/llmrt/all-MiniLM-L6-v2"
+    top_k: 5
+    persist_directory: "data/vectorstore"
+
+tools:
+  shell:
+    enabled: true
+    blocked_commands: ["rm -rf", "mkfs", "dd", ":(){ :|:& };:", "chmod 777 /"]
+  web_request:
+    enabled: true
+    timeout: 30
+  code_exec:
+    enabled: true
+    timeout: 60
+  data_query:
+    enabled: true
+    max_rows: 100
+  skill:
+    skills_dir: "config/skills"

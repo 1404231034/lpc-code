@@ -1,0 +1,10 @@
+name: "list_project"
+description: "列出项目文件结构概览"
+steps:
+  - tool: "filesystem"
+    args:
+      action: "list_dir"
+      path: "."
+  - tool: "shell"
+    args:
+      command: "find . -type f -name '*.py' | head -20"
